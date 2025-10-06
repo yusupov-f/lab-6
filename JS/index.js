@@ -53,54 +53,55 @@ var interval = null;
 var speed = 1000;
 
 function updateCounter() {
-  var min = Math.floor(seconds / 60);
-  var sec = seconds % 60;
-  var displayMin = min;
-  var displaySec = sec;
-  if (min < 10) {
-    displayMin = '0' + min;
-  }
-  if (sec < 10) {
-    displaySec = '0' + sec;
-  }
-  counter.innerHTML = displayMin + ':' + displaySec;
+    var min = Math.floor(seconds / 60);
+    var sec = seconds % 60;
+    var displayMin = min;
+    var displaySec = sec;
+    if (min < 10) {
+        displayMin = '0' + min;
+    }
+    if (sec < 10) {
+        displaySec = '0' + sec;
+    }
+    counter.innerHTML = displayMin + ':' + displaySec;
 }
 
 function startCounting() {
-  if (interval != null) {
-    clearInterval(interval);
-  }
-  interval = setInterval(function() {
-    seconds = seconds + 1;
-    updateCounter();
-  }, speed);
+    if (interval != null) {
+        clearInterval(interval);
+    }
+    interval = setInterval(function() {
+        seconds = seconds + 1;
+        updateCounter();
+    }, speed);
 }
 
 btnPlus.onclick = function() {
-  speed = speed - 200;
-  if (speed < 200) {
-    speed = 200;
-  }
-  body.style.backgroundColor = 'lightgreen';
-  counter.style.color = 'lightcoral';
-  startCounting();
+    speed = speed - 200;
+    if (speed < 200) {
+        speed = 200;
+    }
+    body.style.backgroundColor = 'lightgreen';
+    counter.style.color = 'lightcoral';
+    startCounting();
 };
 
 btnMinus.onclick = function() {
-  speed = speed + 200;
-  body.style.backgroundColor = 'lightcoral';
-  counter.style.color = 'lightgreen';
-  startCounting();
+    speed = speed + 200;
+    body.style.backgroundColor = 'lightcoral';
+    counter.style.color = 'lightgreen';
+    startCounting();
 };
 
 btnReset.onclick = function() {
-  if (interval != null) {
-    clearInterval(interval);
-  }
-  seconds = 0;
-  updateCounter();
-  body.style.backgroundColor = 'gray';
-  counter.style.color = 'black';
+    if (interval != null) {
+        clearInterval(interval);
+        interval = null;
+    }
+    seconds = 0;
+    updateCounter();
+    body.style.backgroundColor = 'gray';
+    counter.style.color = 'black';
 };
 
 updateCounter();
